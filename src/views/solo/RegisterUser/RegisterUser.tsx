@@ -19,6 +19,9 @@ import { Button } from "@/components/ui/button";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { registerUser } from "@/api/services/auth.service";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 const formSchema = z.object({
   email: z.email("Invalid email address"),
@@ -29,6 +32,8 @@ const formSchema = z.object({
 });
 
 export const RegisterUser = () => {
+  const navigate = useNavigate();
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -37,8 +42,24 @@ export const RegisterUser = () => {
     },
   });
 
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log("Form submitted:", data);
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    try {
+      const codeVerification = await registerUser(data);
+
+      console.log(
+        "Registration successful, verification code:",
+        codeVerification
+      );
+
+      toast.success(
+        "Registration successful! Please check your email for the verification code."
+      );
+
+      navigate("/verify-email");
+    } catch (error) {
+      console.error("Registration failed:", error);
+      toast.error("Registration failed. Please try again.");
+    }
   };
 
   return (
