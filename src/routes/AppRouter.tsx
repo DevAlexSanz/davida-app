@@ -1,6 +1,6 @@
 import { CommonLayout } from "@/views/common/layout";
 import { LandingPage } from "@/views/public/LandingPage/LandingPage";
-import { VerifyAccount } from "@/views/public/VerifyAccount/VerifyAccount";
+import { VerifyAccount } from "@/views/common/VerifyAccount/VerifyAccount";
 import { SoloLayout } from "@/views/solo/layout";
 import { Login } from "@/views/solo/Login/Login";
 import { RegisterPharmacy } from "@/views/solo/RegisterPharmacy/RegisterPharmacy";
@@ -12,8 +12,6 @@ export const AppRouter = () => {
     <Routes>
       <Route index element={<LandingPage />} />
 
-      <Route path="verify-account" element={<VerifyAccount />} />
-
       <Route element={<SoloLayout />}>
         <Route path="login" element={<Login />} />
 
@@ -24,6 +22,7 @@ export const AppRouter = () => {
       </Route>
 
       <Route element={<CommonLayout />}>
+        <Route path="verify-account" element={<VerifyAccount />} />
         <Route path="dashboard" element={<h1>Dashboard</h1>} />
         <Route path="profile" element={<h1>Profile</h1>} />
       </Route>

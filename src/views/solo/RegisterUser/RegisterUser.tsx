@@ -2,13 +2,13 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -22,6 +22,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { registerUser } from "@/api/services/auth.service";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
+import { Separator } from "@/components/ui/separator";
 
 const formSchema = z.object({
   email: z.email("Invalid email address"),
@@ -44,12 +45,7 @@ export const RegisterUser = () => {
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     try {
-      const codeVerification = await registerUser(data);
-
-      console.log(
-        "Registration successful, verification code:",
-        codeVerification
-      );
+      await registerUser(data);
 
       toast.success(
         "Registration successful! Please check your email for the verification code."
@@ -63,17 +59,17 @@ export const RegisterUser = () => {
   };
 
   return (
-    <Card className="w-[350px]">
-      <CardHeader>
-        <CardTitle>Register</CardTitle>
-        <CardDescription>
-          Explore the different pharmacies and find the one that suits you best.
+    <Card className="w-[350px] rounded-lg backdrop-blur">
+      <CardHeader className="text-center">
+        <CardTitle className="text-2xl">Create an Account</CardTitle>
+        <CardDescription className="text-muted-foreground">
+          Enter your email below to create your account
         </CardDescription>
       </CardHeader>
 
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
               control={form.control}
               name="email"
@@ -81,11 +77,13 @@ export const RegisterUser = () => {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="Email" type="email" {...field} />
+                    <Input
+                      placeholder="m@example.com"
+                      type="email"
+                      autoComplete="email"
+                      {...field}
+                    />
                   </FormControl>
-                  <FormDescription>
-                    This is your public display name.
-                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -97,19 +95,38 @@ export const RegisterUser = () => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input placeholder="Password" type="password" {...field} />
+                    <Input type="password" autoComplete="off" {...field} />
                   </FormControl>
-                  <FormDescription>Enter a secure password.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
             <Button type="submit" className="w-full">
-              Register
+              Sign In with Email
             </Button>
           </form>
         </Form>
+
+        <div className="my-4 flex items-center justify-between w-full">
+          <Separator className="flex-1" />
+          <span className="px-2 text-sm text-muted-foreground">
+            Or continue with
+          </span>
+          <Separator className="flex-1" />
+        </div>
+
+        <Button size="sm" className="w-full bg-secondary">
+          Sign Up with Google
+        </Button>
       </CardContent>
+      <CardFooter className="flex flex-col items-center">
+        <p className="text-sm">
+          Already have an account?{" "}
+          <a onClick={() => navigate("/login")} className="underline">
+            Sign In
+          </a>
+        </p>
+      </CardFooter>
     </Card>
   );
 };

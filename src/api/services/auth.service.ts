@@ -9,16 +9,13 @@ export const registerUser = async ({
   password: string;
 }) => {
   try {
-    const { data } = await axiosInstance.post<
-      SqlResponse<{ codeVerification: string }>
-    >("/auth/register", {
-      email,
-      password,
-    });
-
-    return {
-      codeVerification: data.data.codeVerification,
-    };
+    await axiosInstance.post<SqlResponse<{ codeVerification: string }>>(
+      "/auth/register",
+      {
+        email,
+        password,
+      }
+    );
   } catch (error) {
     console.error("Error registering user:", error);
     throw error;
@@ -46,6 +43,18 @@ export const login = async ({
 export const getMe = async () => {
   try {
     const { data } = await axiosInstance.get<SqlResponse<AuthUser>>("/auth/me");
+    return data.data;
+  } catch (error) {
+    console.error("Error fetching user data:", error);
+    throw error;
+  }
+};
+
+export const verifyAccount = async (codeVerification: number) => {
+  try {
+    const { data } = await axiosInstance.post("/auth/verify-account", {
+      codeVerification,
+    });
     return data.data;
   } catch (error) {
     console.error("Error fetching user data:", error);
