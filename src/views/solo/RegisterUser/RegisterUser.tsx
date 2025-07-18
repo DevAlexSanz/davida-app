@@ -51,7 +51,7 @@ export const RegisterUser = () => {
         "Registration successful! Please check your email for the verification code."
       );
 
-      navigate("/verify-email");
+      navigate("/login");
     } catch (error) {
       console.error("Registration failed:", error);
       toast.error("Registration failed. Please try again.");
