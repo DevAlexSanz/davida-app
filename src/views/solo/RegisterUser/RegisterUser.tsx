@@ -122,7 +122,7 @@ export const RegisterUser = () => {
       <CardFooter className="flex flex-col items-center">
         <p className="text-sm">
           Already have an account?{" "}
-          <a onClick={() => navigate("/login")} className="underline">
+          <a onClick={() => navigate("/login")} className="underline cursor-pointer">
             Sign In
           </a>
         </p>

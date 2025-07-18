@@ -6,7 +6,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import DavidaLogo from "@/assets/DaVida.png";
+import DavidaLogo from "@/assets/DaVidaLogo.png";
 
 import toast from "react-hot-toast";
 import {
@@ -41,7 +41,7 @@ export const VerifyAccount = () => {
       <div className="absolute w-[400px] h-[300px] bg-[#3DDC97] rounded-full blur-3xl opacity-40 z-0 top-1/2 left-1/2 -translate-x-[40%] -translate-y-1/2" />
 
       <div className="relative z-10 flex flex-col items-center justify-center text-center w-full">
-        <img src={DavidaLogo} alt="Description" className="w-40" />
+        <img src={DavidaLogo} alt="Description" className="w-40 p-4" />
         <Card className="w-[350px] rounded-lg backdrop-blur">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl">Verify Account</CardTitle>

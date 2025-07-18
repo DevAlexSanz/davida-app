@@ -125,7 +125,10 @@ export const Login = () => {
       <CardFooter className="flex flex-col items-center">
         <p className="text-sm">
           Don't have an account?{" "}
-          <a onClick={() => navigate("/register")} className="underline">
+          <a
+            onClick={() => navigate("/register")}
+            className="underline cursor-pointer"
+          >
             Sign up
           </a>
         </p>

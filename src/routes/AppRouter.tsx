@@ -6,17 +6,22 @@ import { Login } from "@/views/solo/Login/Login";
 import { RegisterPharmacy } from "@/views/solo/RegisterPharmacy/RegisterPharmacy";
 import { RegisterUser } from "@/views/solo/RegisterUser/RegisterUser";
 import { Route, Routes } from "react-router";
+import { PublicLayout } from "@/views/public/layout";
+import { Register } from "@/views/solo/Register/Register";
 
 export const AppRouter = () => {
   return (
     <Routes>
-      <Route index element={<LandingPage />} />
+      <Route element={<PublicLayout />}>
+        <Route index element={<LandingPage />} />
+      </Route>
 
       <Route element={<SoloLayout />}>
         <Route path="login" element={<Login />} />
 
         <Route path="register">
-          <Route index element={<RegisterUser />} />
+          <Route index element={<Register />} />
+          <Route path="user" element={<RegisterUser />} />
           <Route path="pharmacy" element={<RegisterPharmacy />} />
         </Route>
       </Route>
