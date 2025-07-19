@@ -61,3 +61,12 @@ export const verifyAccount = async (codeVerification: number) => {
     throw error;
   }
 };
+
+export const refreshToken = async () => {
+  try {
+    await axiosInstance.post("/auth/refresh-token");
+  } catch (error) {
+    console.error("Error fetching user data:", error);
+    throw error;
+  }
+};

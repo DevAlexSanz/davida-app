@@ -6,7 +6,7 @@ export const SoloLayout = () => {
   return (
     <>
       <div
-        style={{ position: "fixed", top: "2rem", right: "2rem", zIndex: 1000 }}
+        style={{ position: "fixed", top: "1rem", right: "1rem", zIndex: 1000 }}
       >
         <ModeToggle />
       </div>
