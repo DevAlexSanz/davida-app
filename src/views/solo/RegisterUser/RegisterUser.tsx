@@ -101,7 +101,7 @@ export const RegisterUser = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full cursor-pointer">
               Sign In with Email
             </Button>
           </form>
@@ -115,14 +115,17 @@ export const RegisterUser = () => {
           <Separator className="flex-1" />
         </div>
 
-        <Button size="sm" className="w-full bg-secondary">
+        <Button size="sm" className="w-full bg-secondary cursor-pointer">
           Sign Up with Google
         </Button>
       </CardContent>
       <CardFooter className="flex flex-col items-center">
         <p className="text-sm">
           Already have an account?{" "}
-          <a onClick={() => navigate("/login")} className="underline cursor-pointer">
+          <a
+            onClick={() => navigate("/login")}
+            className="underline cursor-pointer"
+          >
             Sign In
           </a>
         </p>

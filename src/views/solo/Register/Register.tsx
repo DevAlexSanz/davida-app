@@ -48,7 +48,7 @@ export const Register = () => {
               </div>
             </div>
             <Button
-              className="w-full font-semibold py-3 rounded-lg"
+              className="w-full font-semibold py-3 rounded-lg cursor-pointer"
               onClick={() => navigate("/register/user")}
             >
               Get Started as User
@@ -89,7 +89,7 @@ export const Register = () => {
               </div>
             </div>
             <Button
-              className="w-full font-semibold py-3 rounded-lg bg-secondary"
+              className="w-full font-semibold py-3 rounded-lg bg-secondary cursor-pointer"
               onClick={() => navigate("/register/pharmacy")}
             >
               Join as Pharmacy

@@ -79,7 +79,11 @@ export const VerifyAccount = () => {
                 )}
               </div>
             </div>
-            <Button size="sm" className="w-full" onClick={onSubmit}>
+            <Button
+              size="sm"
+              className="w-full cursor-pointer"
+              onClick={onSubmit}
+            >
               Verify Account
             </Button>
           </CardContent>

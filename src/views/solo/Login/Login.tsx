@@ -71,7 +71,7 @@ export const Login = () => {
       </CardHeader>
 
       <CardContent>
-        <Button size="sm" className="w-full bg-secondary">
+        <Button size="sm" className="w-full bg-secondary cursor-pointer">
           Login with Google
         </Button>
 
@@ -116,7 +116,7 @@ export const Login = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full cursor-pointer">
               Login
             </Button>
           </form>

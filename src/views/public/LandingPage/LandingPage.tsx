@@ -9,8 +9,11 @@ import {
   User,
   Users,
 } from "lucide-react";
+import { useNavigate } from "react-router";
 
 export const LandingPage = () => {
+  const navigate = useNavigate();
+
   const elements = [
     {
       logo: <Store size={48} color="white" />,
@@ -71,15 +74,21 @@ export const LandingPage = () => {
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row flex-wrap gap-4 w-full">
-              <Button className="w-full sm:flex-1 py-6 text-lg font-semibold">
+              <Button
+                className="w-full sm:flex-1 py-6 text-lg font-semibold cursor-pointer"
+                onClick={() => navigate("/register/pharmacy")}
+              >
                 <Store className="mr-2" />
-                Register as a Pharmacy
+                Register as Pharmacy
                 <ArrowRight className="ml-2" />
               </Button>
 
-              <Button className="w-full sm:flex-1 py-6 text-lg font-semibold bg-secondary">
+              <Button
+                className="w-full sm:flex-1 py-6 text-lg font-semibold bg-secondary cursor-pointer"
+                onClick={() => navigate("/register/user")}
+              >
                 <User className="mr-2" />
-                Register as a Customer
+                Register as User
                 <ArrowRight className="ml-2" />
               </Button>
             </div>

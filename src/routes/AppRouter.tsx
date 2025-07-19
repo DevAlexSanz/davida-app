@@ -8,6 +8,7 @@ import { RegisterUser } from "@/views/solo/RegisterUser/RegisterUser";
 import { Route, Routes } from "react-router";
 import { PublicLayout } from "@/views/public/layout";
 import { Register } from "@/views/solo/Register/Register";
+import { Dashboard } from "@/views/common/Dashboard/Dashboard";
 
 export const AppRouter = () => {
   return (
@@ -28,7 +29,7 @@ export const AppRouter = () => {
 
       <Route element={<CommonLayout />}>
         <Route path="verify-account" element={<VerifyAccount />} />
-        <Route path="dashboard" element={<h1>Dashboard</h1>} />
+        <Route path="dashboard" element={<Dashboard />} />
         <Route path="profile" element={<h1>Profile</h1>} />
       </Route>
 

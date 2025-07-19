@@ -23,10 +23,18 @@ export const PublicLayout = () => {
           </div>
 
           <div className="hidden md:flex items-center gap-4">
-            <Button variant="outline" onClick={() => navigate("/login")}>
+            <Button
+              variant="outline"
+              onClick={() => navigate("/login")}
+              className="cursor-pointer"
+            >
               Sign In
             </Button>
-            <Button variant="default" onClick={() => navigate("/register")}>
+            <Button
+              variant="default"
+              onClick={() => navigate("/register")}
+              className="cursor-pointer"
+            >
               Sign Up
             </Button>
             <ModeToggle />
@@ -37,7 +45,7 @@ export const PublicLayout = () => {
 
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" className="cursor-pointer">
                   <Menu className="h-6 w-6" />
                 </Button>
               </SheetTrigger>
@@ -49,14 +57,14 @@ export const PublicLayout = () => {
                 <div className="flex flex-col gap-3 mt-4">
                   <Button
                     variant="outline"
-                    className="w-full"
+                    className="w-full cursor-pointer"
                     onClick={() => navigate("/login")}
                   >
                     Sign In
                   </Button>
                   <Button
                     variant="default"
-                    className="w-full"
+                    className="w-full cursor-pointer"
                     onClick={() => navigate("/register")}
                   >
                     Sign Up
