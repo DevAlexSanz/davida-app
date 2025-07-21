@@ -5,37 +5,41 @@ import DaVidaLogo from "@/assets/DaVidaLogo.png";
 import { useAuthStore } from "@/store/auth";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/shared/ModeToggle";
+import { VerifyAccount } from "./VerifyAccount/VerifyAccount";
 
 export const CommonLayout = () => {
   const { isLoading } = useAuthGuard();
-  const { logout } = useAuthStore();
+  const { logout, user } = useAuthStore();
 
   if (isLoading) return <Loader />;
 
+  const shouldVerify = user && !user.isVerified;
+
+  if (shouldVerify) {
+    return (
+      <main className="h-screen w-full flex items-center justify-center">
+        <VerifyAccount />
+      </main>
+    );
+  }
+
   return (
     <>
-      <header className="w-full px-4 py-3 fixed top-0 z-50 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center">
-            <img src={DaVidaLogo} alt="DaVida Logo" className="w-24" />
-          </div>
-
-          <div className="flex items-center gap-4">
-            <Button
-              variant="default"
-              onClick={() => logout()}
-              className="cursor-pointer"
-            >
-              Logout
-            </Button>
+      <header className="fixed top-0 z-50 w-full backdrop-blur-sm px-6 py-4">
+        <div className="mx-auto flex max-w-screen-xl items-center justify-between">
+          <img src={DaVidaLogo} alt="DaVida Logo" className="w-24 h-auto" />
+          <div className="flex items-center gap-3">
+            <Button onClick={logout}>Cerrar sesión</Button>
             <ModeToggle />
           </div>
         </div>
       </header>
 
-      <div className="relative flex flex-col items-center justify-start min-h-screen overflow-hidden px-4 pt-28 pb-12 sm:pt-32 sm:pb-16 md:pt-36 md:pb-20 gap-20">
-        <Outlet />
-      </div>
+      <main className="pt-28 px-6 pb-12 flex flex-col min-h-screen">
+        <div className="mx-auto w-full max-w-screen-lg flex-grow">
+          <Outlet />
+        </div>
+      </main>
     </>
   );
 };

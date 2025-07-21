@@ -1,6 +1,6 @@
 import { Outlet, useNavigate } from "react-router";
 import Logo from "@/assets/Logo.png";
-import DavidaLogo from "@/assets/DaVidaLogo.png";
+import DavidaLogo from "@/assets/DavidaLogo.png";
 import { ModeToggle } from "@/components/shared/ModeToggle";
 
 export const SoloLayout = () => {
@@ -14,24 +14,24 @@ export const SoloLayout = () => {
             <img
               src={Logo}
               alt="DaVida Logo"
-              className="w-7"
+              className="w-7 cursor-pointer"
               onClick={() => navigate("/")}
             />
           </div>
-
-          <div className="hidden md:flex items-center gap-4">
+          <div className="flex items-center gap-4">
             <ModeToggle />
           </div>
         </div>
       </header>
+      <div className="min-h-screen flex items-center justify-center px-4 pt-16 pb-8 relative">
+        <div className="absolute w-[50vw] h-[40vh] bg-[#0099ff] rounded-full blur-3xl opacity-40 z-0 top-1/2 left-1/2 -translate-x-[70%] -translate-y-1/2" />
+        <div className="absolute w-[50vw] h-[40vh] bg-[#3DDC97] rounded-full blur-3xl opacity-40 z-0 top-1/2 left-1/2 -translate-x-[30%] -translate-y-1/2" />
 
-      <div className="relative flex items-center justify-center h-screen overflow-hidden">
-        <div className="absolute w-[400px] h-[300px] bg-[#0099ff] rounded-full blur-3xl opacity-40 z-0 top-1/2 left-1/2 -translate-x-[70%] -translate-y-1/2" />
-        <div className="absolute w-[400px] h-[300px] bg-[#3DDC97] rounded-full blur-3xl opacity-40 z-0 top-1/2 left-1/2 -translate-x-[30%] -translate-y-1/2" />
-
-        <div className="relative z-10 flex flex-col items-center justify-center text-center w-full">
-          <img src={DavidaLogo} alt="Description" className="w-40 p-4" />
-          <Outlet />
+        <div className="relative z-10 flex flex-col items-center justify-center text-center w-full max-w-4xl mx-auto min-h-[60vh]">
+          <img src={DavidaLogo} alt="DaVida Brand Logo" className="w-48 p-4" />
+          <div className="w-full flex justify-center">
+            <Outlet />
+          </div>
         </div>
       </div>
     </>

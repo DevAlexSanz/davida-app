@@ -49,11 +49,8 @@ export const Login = () => {
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     try {
       await login(data);
-
       setIsAuthenticated(true);
-
       toast.success("Login successful!");
-
       navigate("/dashboard");
     } catch (error) {
       console.error("Login failed:", error);
@@ -62,7 +59,7 @@ export const Login = () => {
   };
 
   return (
-    <Card className="w-[350px] rounded-lg backdrop-blur">
+    <Card className="w-full max-w-sm rounded-lg backdrop-blur">
       <CardHeader className="text-center">
         <CardTitle className="text-2xl">Welcome Back</CardTitle>
         <CardDescription className="text-muted-foreground">

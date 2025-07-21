@@ -22,6 +22,19 @@ export const registerUser = async ({
   }
 };
 
+export const registerPharmacy = async (formData: FormData) => {
+  try {
+    await axiosInstance.post("/auth/register/pharmacy", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  } catch (error) {
+    console.error("Error registering pharmacy:", error);
+    throw error;
+  }
+};
+
 export const login = async ({
   email,
   password,

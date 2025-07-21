@@ -59,7 +59,7 @@ export const RegisterUser = () => {
   };
 
   return (
-    <Card className="w-[350px] rounded-lg backdrop-blur">
+    <Card className="w-full max-w-sm rounded-lg backdrop-blur">
       <CardHeader className="text-center">
         <CardTitle className="text-2xl">Create an Account</CardTitle>
         <CardDescription className="text-muted-foreground">
