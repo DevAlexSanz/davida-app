@@ -1,6 +1,6 @@
 import { Outlet, useNavigate } from "react-router";
 import Logo from "@/assets/Logo.png";
-import DavidaLogo from "@/assets/DavidaLogo.png";
+import DavidaLogo from "@/assets/DaVidaLogo.png";
 import { ModeToggle } from "@/components/shared/ModeToggle";
 
 export const SoloLayout = () => {
