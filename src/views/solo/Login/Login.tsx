@@ -24,6 +24,7 @@ import { Button } from "@/components/ui/button";
 import { login } from "@/api/services/auth.service";
 import { useAuthStore } from "@/store/auth";
 import { Separator } from "@/components/ui/separator";
+import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
   email: z.email("Invalid email address"),
@@ -35,6 +36,7 @@ const formSchema = z.object({
 
 export const Login = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -61,9 +63,9 @@ export const Login = () => {
   return (
     <Card className="w-full max-w-sm rounded-lg backdrop-blur">
       <CardHeader className="text-center">
-        <CardTitle className="text-2xl">Welcome Back</CardTitle>
+        <CardTitle className="text-2xl">{t("login.title")}</CardTitle>
         <CardDescription className="text-muted-foreground">
-          Login with your Google Account
+          {t("login.subtitle")}
         </CardDescription>
       </CardHeader>
 
@@ -75,7 +77,7 @@ export const Login = () => {
         <div className="my-4 flex items-center justify-between w-full">
           <Separator className="flex-1" />
           <span className="px-2 text-sm text-muted-foreground">
-            Or continue with
+            {t("login.or")}
           </span>
           <Separator className="flex-1" />
         </div>
@@ -87,7 +89,7 @@ export const Login = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>{t("login.textfield.email")}</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="m@example.com"
@@ -105,7 +107,7 @@ export const Login = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel>{t("login.textfield.password")}</FormLabel>
                   <FormControl>
                     <Input type="password" autoComplete="off" {...field} />
                   </FormControl>
@@ -114,19 +116,19 @@ export const Login = () => {
               )}
             />
             <Button type="submit" className="w-full cursor-pointer">
-              Login
+              {t("login.button")}
             </Button>
           </form>
         </Form>
       </CardContent>
       <CardFooter className="flex flex-col items-center">
         <p className="text-sm">
-          Don't have an account?{" "}
+          {t("login.label.no-account")}{" "}
           <a
             onClick={() => navigate("/register")}
             className="underline cursor-pointer"
           >
-            Sign up
+            {t("login.button.no-account")}
           </a>
         </p>
       </CardFooter>

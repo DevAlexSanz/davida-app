@@ -23,6 +23,7 @@ import { registerUser } from "@/api/services/auth.service";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 import { Separator } from "@/components/ui/separator";
+import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
   email: z.email("Invalid email address"),
@@ -34,6 +35,7 @@ const formSchema = z.object({
 
 export const RegisterUser = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -61,9 +63,9 @@ export const RegisterUser = () => {
   return (
     <Card className="w-full max-w-sm rounded-lg backdrop-blur">
       <CardHeader className="text-center">
-        <CardTitle className="text-2xl">Create an Account</CardTitle>
+        <CardTitle className="text-2xl">{t("register.user.title")}</CardTitle>
         <CardDescription className="text-muted-foreground">
-          Enter your email below to create your account
+          {t("register.user.subtitle")}
         </CardDescription>
       </CardHeader>
 
@@ -75,7 +77,7 @@ export const RegisterUser = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>{t("register.textfield.email")}</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="m@example.com"
@@ -93,7 +95,7 @@ export const RegisterUser = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel>{t("register.textfield.password")}</FormLabel>
                   <FormControl>
                     <Input type="password" autoComplete="off" {...field} />
                   </FormControl>
@@ -102,7 +104,7 @@ export const RegisterUser = () => {
               )}
             />
             <Button type="submit" className="w-full cursor-pointer">
-              Sign In with Email
+              {t("register.user.button")}
             </Button>
           </form>
         </Form>
@@ -110,7 +112,7 @@ export const RegisterUser = () => {
         <div className="my-4 flex items-center justify-between w-full">
           <Separator className="flex-1" />
           <span className="px-2 text-sm text-muted-foreground">
-            Or continue with
+            {t("register.or")}
           </span>
           <Separator className="flex-1" />
         </div>
@@ -121,12 +123,12 @@ export const RegisterUser = () => {
       </CardContent>
       <CardFooter className="flex flex-col items-center">
         <p className="text-sm">
-          Already have an account?{" "}
+          {t("register.label.have-account")}{" "}
           <a
             onClick={() => navigate("/login")}
             className="underline cursor-pointer"
           >
-            Sign In
+            {t("register.button.have-account")}
           </a>
         </p>
       </CardFooter>

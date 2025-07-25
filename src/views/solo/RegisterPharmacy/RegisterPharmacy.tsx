@@ -1,5 +1,3 @@
-"use client";
-
 import type React from "react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -38,6 +36,7 @@ import {
 } from "@/components/ui/form";
 import { registerPharmacy } from "@/api/services/auth.service";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -53,6 +52,7 @@ const formSchema = z.object({
 
 export const RegisterPharmacy = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [profilePhoto, setProfilePhoto] = useState<File | null>(null);
   const [coverPhoto, setCoverPhoto] = useState<File | null>(null);
@@ -134,22 +134,28 @@ export const RegisterPharmacy = () => {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <Card>
-            <CardHeader>
+            <CardHeader className="text-left">
               <CardTitle className="flex items-center gap-2">
                 <Building2 className="h-5 w-5" />
-                Pharmacy Information
+                {t("register.pharmacy.card.pharmacy-information.title")}
               </CardTitle>
               <CardDescription>
-                Provide the basic details of your pharmacy
+                {t("register.pharmacy.card.pharmacy-information.subtitle")}
               </CardDescription>
             </CardHeader>
+
             <CardContent className="space-y-4">
               <FormField
                 control={form.control}
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Pharmacy Name *</FormLabel>
+                    <FormLabel>
+                      {t(
+                        "register.pharmacy.card.pharmacy-information.textfield.name"
+                      )}{" "}
+                      *
+                    </FormLabel>
                     <FormControl>
                       <Input placeholder="e.g., San Jose Pharmacy" {...field} />
                     </FormControl>
@@ -163,11 +169,17 @@ export const RegisterPharmacy = () => {
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Description</FormLabel>
+                    <FormLabel>
+                      {t(
+                        "register.pharmacy.card.pharmacy-information.textfield.description"
+                      )}
+                    </FormLabel>
                     <FormControl>
                       <Textarea
                         {...field}
-                        placeholder="Brief description of your pharmacy, offered services, etc."
+                        placeholder={t(
+                          "register.pharmacy.card.pharmacy-information.textarea.placeholder"
+                        )}
                         className="min-h-[100px]"
                       />
                     </FormControl>
@@ -182,13 +194,20 @@ export const RegisterPharmacy = () => {
                   name="address"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Address *</FormLabel>
+                      <FormLabel>
+                        {t(
+                          "register.pharmacy.card.pharmacy-information.textfield.address"
+                        )}{" "}
+                        *
+                      </FormLabel>
                       <FormControl>
                         <div className="relative">
                           <MapPin className="absolute left-3 top-3 h-4 w-4" />
                           <Input
                             {...field}
-                            placeholder="Full address"
+                            placeholder={t(
+                              "register.pharmacy.card.pharmacy-information.textfield.placeholder"
+                            )}
                             className="pl-10"
                           />
                         </div>
@@ -203,7 +222,12 @@ export const RegisterPharmacy = () => {
                   name="phone"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Phone *</FormLabel>
+                      <FormLabel>
+                        {t(
+                          "register.pharmacy.card.pharmacy-information.textfield.phone"
+                        )}{" "}
+                        *
+                      </FormLabel>
                       <FormControl>
                         <div className="relative">
                           <Phone className="absolute left-3 top-3 h-4 w-4" />
@@ -226,12 +250,17 @@ export const RegisterPharmacy = () => {
               <div className="space-y-4">
                 <h4 className="font-medium flex items-center gap-2">
                   <Camera className="h-4 w-4" />
-                  Pharmacy Images
+                  {t("register.pharmacy.card.pharmacy-information.images")}
                 </h4>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="profile-photo">Profile Photo *</Label>
+                    <Label htmlFor="profile-photo">
+                      {t(
+                        "register.pharmacy.card.pharmacy-information.images.profile-photo"
+                      )}{" "}
+                      *
+                    </Label>
                     <div className="border-2 border-dashed rounded-lg p-6 text-center">
                       <input
                         id="profile-photo"
@@ -253,8 +282,11 @@ export const RegisterPharmacy = () => {
                         ) : (
                           <>
                             <Upload className="h-8 w-8 mx-auto mb-2" />
-                            <p className="text-sm">Upload profile photo</p>
-                            <p className="text-xs mt-1">PNG, JPG up to 5MB</p>
+                            <p className="text-sm">
+                              {t(
+                                "register.pharmacy.card.pharmacy-information.images.upload"
+                              )}
+                            </p>
                           </>
                         )}
                       </label>
@@ -267,7 +299,12 @@ export const RegisterPharmacy = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="cover-photo">Cover Photo *</Label>
+                    <Label htmlFor="cover-photo">
+                      {t(
+                        "register.pharmacy.card.pharmacy-information.images.cover-photo"
+                      )}{" "}
+                      *
+                    </Label>
                     <div className="border-2 border-dashed rounded-lg p-6 text-center">
                       <input
                         id="cover-photo"
@@ -289,8 +326,11 @@ export const RegisterPharmacy = () => {
                         ) : (
                           <>
                             <Upload className="h-8 w-8 mx-auto mb-2" />
-                            <p className="text-sm">Upload cover photo</p>
-                            <p className="text-xs mt-1">PNG, JPG up to 5MB</p>
+                            <p className="text-sm">
+                              {t(
+                                "register.pharmacy.card.pharmacy-information.images.upload"
+                              )}
+                            </p>
                           </>
                         )}
                       </label>
@@ -307,13 +347,13 @@ export const RegisterPharmacy = () => {
           </Card>
 
           <Card>
-            <CardHeader>
+            <CardHeader className="text-left">
               <CardTitle className="flex items-center gap-2">
                 <User className="h-5 w-5" />
-                User Information
+                {t("register.pharmacy.card.user-information.title")}
               </CardTitle>
               <CardDescription>
-                Credentials to access the system
+                {t("register.pharmacy.card.user-information.subtitle")}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -322,7 +362,12 @@ export const RegisterPharmacy = () => {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email *</FormLabel>
+                    <FormLabel>
+                      {t(
+                        "register.pharmacy.card.user-information.textfield.email"
+                      )}{" "}
+                      *
+                    </FormLabel>
                     <FormControl>
                       <div className="relative">
                         <Mail className="absolute left-3 top-3 h-4 w-4" />
@@ -345,12 +390,16 @@ export const RegisterPharmacy = () => {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password *</FormLabel>
+                    <FormLabel>
+                      {t(
+                        "register.pharmacy.card.user-information.textfield.password"
+                      )}{" "}
+                      *
+                    </FormLabel>
                     <FormControl>
                       <div className="relative">
                         <Lock className="absolute left-3 top-3 h-4 w-4" />
                         <Input
-                          placeholder="Minimum 8 characters"
                           className="pl-10"
                           type="password"
                           autoComplete="off"
@@ -372,10 +421,10 @@ export const RegisterPharmacy = () => {
               className="flex-1 bg-transparent"
               onClick={() => navigate("/register")}
             >
-              Cancel
+              {t("register.pharmacy.actions.cancel")}
             </Button>
             <Button type="submit" className="flex-1">
-              Register Pharmacy
+              {t("register.pharmacy.actions.register")}
             </Button>
           </div>
         </form>
@@ -383,12 +432,12 @@ export const RegisterPharmacy = () => {
 
       <div className="text-center mt-6">
         <p className="text-sm text-muted-foreground">
-          Already have an account?{" "}
+          {t("register.label.have-account")}{" "}
           <a
             className="hover:underline font-medium cursor-pointer"
             onClick={() => navigate("/login")}
           >
-            Sign in
+            {t("register.button.have-account")}
           </a>
         </p>
       </div>

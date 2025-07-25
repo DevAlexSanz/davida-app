@@ -1,7 +1,8 @@
 import { Outlet, useNavigate } from "react-router";
 import Logo from "@/assets/Logo.png";
 import DavidaLogo from "@/assets/DaVidaLogo.png";
-import { ModeToggle } from "@/components/shared/ModeToggle";
+import { ThemeToggle } from "@/components/shared/ThemeToggle";
+import { LangToogle } from "@/components/shared/LangToogle";
 
 export const SoloLayout = () => {
   const navigate = useNavigate();
@@ -19,7 +20,8 @@ export const SoloLayout = () => {
             />
           </div>
           <div className="flex items-center gap-4">
-            <ModeToggle />
+            <LangToogle />
+            <ThemeToggle />
           </div>
         </div>
       </header>

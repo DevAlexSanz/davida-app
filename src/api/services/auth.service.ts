@@ -83,3 +83,12 @@ export const refreshToken = async () => {
     throw error;
   }
 };
+
+export const logout = async () => {
+  try {
+    await axiosInstance.post("/auth/logout");
+  } catch (error) {
+    console.error("Error logging out:", error);
+    throw error;
+  }
+};

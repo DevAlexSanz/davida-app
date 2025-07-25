@@ -9,10 +9,13 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { ModeToggle } from "@/components/shared/ModeToggle";
+import { ThemeToggle } from "@/components/shared/ThemeToggle";
+import { LangToogle } from "@/components/shared/LangToogle";
+import { useTranslation } from "react-i18next";
 
 export const PublicLayout = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <>
@@ -28,20 +31,22 @@ export const PublicLayout = () => {
               onClick={() => navigate("/login")}
               className="cursor-pointer"
             >
-              Sign In
+              {t("register.button.have-account")}
             </Button>
             <Button
               variant="default"
               onClick={() => navigate("/register")}
               className="cursor-pointer"
             >
-              Sign Up
+              {t("login.button.no-account")}
             </Button>
-            <ModeToggle />
+            <LangToogle />
+            <ThemeToggle />
           </div>
 
           <div className="md:hidden flex items-center gap-2">
-            <ModeToggle />
+            <LangToogle />
+            <ThemeToggle />
 
             <Sheet>
               <SheetTrigger asChild>
@@ -51,7 +56,7 @@ export const PublicLayout = () => {
               </SheetTrigger>
               <SheetContent side="right" className="w-64 px-4">
                 <SheetHeader>
-                  <SheetTitle className="text-lg">Authentication</SheetTitle>
+                  <SheetTitle className="text-lg">{t("auth.title")}</SheetTitle>
                 </SheetHeader>
 
                 <div className="flex flex-col gap-3 mt-4">
@@ -60,14 +65,14 @@ export const PublicLayout = () => {
                     className="w-full cursor-pointer"
                     onClick={() => navigate("/login")}
                   >
-                    Sign In
+                    {t("register.button.have-account")}
                   </Button>
                   <Button
                     variant="default"
                     className="w-full cursor-pointer"
                     onClick={() => navigate("/register")}
                   >
-                    Sign Up
+                    {t("login.button.no-account")}
                   </Button>
                 </div>
               </SheetContent>

@@ -4,8 +4,9 @@ import { useAuthGuard } from "@/guards/useAuthGuard";
 import DaVidaLogo from "@/assets/DaVidaLogo.png";
 import { useAuthStore } from "@/store/auth";
 import { Button } from "@/components/ui/button";
-import { ModeToggle } from "@/components/shared/ModeToggle";
+import { ThemeToggle } from "@/components/shared/ThemeToggle";
 import { VerifyAccount } from "./VerifyAccount/VerifyAccount";
+import { LangToogle } from "@/components/shared/LangToogle";
 
 export const CommonLayout = () => {
   const { isLoading } = useAuthGuard();
@@ -30,7 +31,8 @@ export const CommonLayout = () => {
           <img src={DaVidaLogo} alt="DaVida Logo" className="w-24 h-auto" />
           <div className="flex items-center gap-3">
             <Button onClick={logout}>Cerrar sesión</Button>
-            <ModeToggle />
+            <LangToogle />
+            <ThemeToggle />
           </div>
         </div>
       </header>
