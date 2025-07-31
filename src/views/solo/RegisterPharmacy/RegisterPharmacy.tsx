@@ -37,6 +37,8 @@ import {
 import { registerPharmacy } from "@/api/services/auth.service";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
+import { useMutation } from "@tanstack/react-query";
+import { Spinner } from "@/components/ui/spinner";
 
 const formSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -71,6 +73,20 @@ export const RegisterPharmacy = () => {
     },
   });
 
+  const { mutate, isPending } = useMutation({
+    mutationFn: registerPharmacy,
+    onSuccess: () => {
+      toast.success(
+        "Registration successful! Please check your email for the verification code."
+      );
+
+      navigate("/login");
+    },
+    onError: () => {
+      toast.error("Failed to register pharmacy. Please try again.");
+    },
+  });
+
   const handleProfilePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -102,31 +118,19 @@ export const RegisterPharmacy = () => {
 
     if (!valid) return;
 
-    try {
-      const formData = new FormData();
+    const formData = new FormData();
 
-      formData.append("name", data.name);
-      formData.append("description", data.description ?? "");
-      formData.append("address", data.address);
-      formData.append("phone", data.phone);
-      formData.append("email", data.email);
-      formData.append("password", data.password);
+    formData.append("name", data.name);
+    formData.append("description", data.description ?? "");
+    formData.append("address", data.address);
+    formData.append("phone", data.phone);
+    formData.append("email", data.email);
+    formData.append("password", data.password);
 
-      formData.append("profilePhoto", profilePhoto!);
-      formData.append("coverPhoto", coverPhoto!);
+    formData.append("profilePhoto", profilePhoto!);
+    formData.append("coverPhoto", coverPhoto!);
 
-      await registerPharmacy(formData);
-
-      toast.success(
-        "Registration successful! Please check your email for the verification code."
-      );
-
-      navigate("/login");
-    } catch (error) {
-      console.error("Error registering pharmacy:", error);
-
-      toast.error("Failed to register pharmacy. Please try again.");
-    }
+    mutate(formData);
   };
 
   return (
@@ -423,8 +427,12 @@ export const RegisterPharmacy = () => {
             >
               {t("register.pharmacy.actions.cancel")}
             </Button>
-            <Button type="submit" className="flex-1">
-              {t("register.pharmacy.actions.register")}
+            <Button type="submit" className="flex-1" disabled={isPending}>
+              {isPending ? (
+                <Spinner size="md" className="bg-black dark:bg-white" />
+              ) : (
+                t("register.pharmacy.actions.register")
+              )}
             </Button>
           </div>
         </form>

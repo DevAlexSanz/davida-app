@@ -74,5 +74,7 @@
   "landing.section.one.card.two.title": "Configurar",
   "landing.section.one.card.two.description": "Agrega tus productos, establece precios y personaliza tu tienda en línea.",
   "landing.section.one.card.three.title": "Comenzar a Vender",
-  "landing.section.one.card.three.description": "Comienza a recibir pedidos y gestiona tu farmacia desde el panel de control."
+  "landing.section.one.card.three.description": "Comienza a recibir pedidos y gestiona tu farmacia desde el panel de control.",
+
+  "layout.common.navbar.logout": "Cerrar sesión"
 }

@@ -25,6 +25,8 @@ import { login } from "@/api/services/auth.service";
 import { useAuthStore } from "@/store/auth";
 import { Separator } from "@/components/ui/separator";
 import { useTranslation } from "react-i18next";
+import { useMutation } from "@tanstack/react-query";
+import { Spinner } from "@/components/ui/spinner";
 
 const formSchema = z.object({
   email: z.email("Invalid email address"),
@@ -37,6 +39,7 @@ const formSchema = z.object({
 export const Login = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { setIsAuthenticated } = useAuthStore();
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -46,18 +49,20 @@ export const Login = () => {
     },
   });
 
-  const { setIsAuthenticated } = useAuthStore();
-
-  const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    try {
-      await login(data);
+  const { mutate, isPending } = useMutation({
+    mutationFn: login,
+    onSuccess: () => {
       setIsAuthenticated(true);
       toast.success("Login successful!");
       navigate("/dashboard");
-    } catch (error) {
-      console.error("Login failed:", error);
+    },
+    onError: () => {
       toast.error("Login failed. Please check your credentials.");
-    }
+    },
+  });
+
+  const onSubmit = (data: z.infer<typeof formSchema>) => {
+    mutate(data);
   };
 
   return (
@@ -115,8 +120,16 @@ export const Login = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full cursor-pointer">
-              {t("login.button")}
+            <Button
+              type="submit"
+              className="w-full cursor-pointer"
+              disabled={isPending}
+            >
+              {isPending ? (
+                <Spinner size="md" className="bg-black dark:bg-white" />
+              ) : (
+                t("login.button")
+              )}
             </Button>
           </form>
         </Form>

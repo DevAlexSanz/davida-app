@@ -10,7 +10,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/shared/ThemeToggle";
-import { LangToogle } from "@/components/shared/LangToogle";
+import { LangToggle } from "@/components/shared/LangToggle";
 import { useTranslation } from "react-i18next";
 
 export const PublicLayout = () => {
@@ -40,12 +40,12 @@ export const PublicLayout = () => {
             >
               {t("login.button.no-account")}
             </Button>
-            <LangToogle />
+            <LangToggle />
             <ThemeToggle />
           </div>
 
           <div className="md:hidden flex items-center gap-2">
-            <LangToogle />
+            <LangToggle />
             <ThemeToggle />
 
             <Sheet>

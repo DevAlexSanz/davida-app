@@ -2,7 +2,7 @@ import { Outlet, useNavigate } from "react-router";
 import Logo from "@/assets/Logo.png";
 import DavidaLogo from "@/assets/DaVidaLogo.png";
 import { ThemeToggle } from "@/components/shared/ThemeToggle";
-import { LangToogle } from "@/components/shared/LangToogle";
+import { LangToggle } from "@/components/shared/LangToggle";
 
 export const SoloLayout = () => {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ export const SoloLayout = () => {
             />
           </div>
           <div className="flex items-center gap-4">
-            <LangToogle />
+            <LangToggle />
             <ThemeToggle />
           </div>
         </div>

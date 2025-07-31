@@ -74,5 +74,7 @@
   "landing.section.one.card.two.title": "Set Up",
   "landing.section.one.card.two.description": "Add your products, set prices, and personalize your online store.",
   "landing.section.one.card.three.title": "Start Selling",
-  "landing.section.one.card.three.description": "Start receiving orders and manage your pharmacy from the control panel."
+  "landing.section.one.card.three.description": "Start receiving orders and manage your pharmacy from the control panel.",
+
+  "layout.common.navbar.logout": "Logout"
 }
