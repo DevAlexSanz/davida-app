@@ -2,6 +2,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -15,24 +16,50 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { useState } from "react";
-import { verifyAccount } from "@/api/services/auth.service";
+import { resendCode, verifyAccount } from "@/api/services/auth.service";
 import { useAuthStore } from "@/store/auth";
+import { useMutation } from "@tanstack/react-query";
+import { Spinner } from "@/components/ui/spinner";
+import { useTranslation } from "react-i18next";
+import { normalizeError } from "@/lib/utils/normalizeErrors";
 
 export const VerifyAccount = () => {
   const { logout } = useAuthStore();
+  const { t } = useTranslation();
 
   const [codeVerification, setCodeVerification] = useState<string>("");
 
-  const onSubmit = async () => {
-    try {
-      await verifyAccount(Number(codeVerification));
+  const { mutate, isPending } = useMutation({
+    mutationFn: verifyAccount,
+    onSuccess: () => {
       toast.success("Account verified successfully! You can now log in.");
-
       logout();
-    } catch (error) {
-      console.error("Verification failed:", error);
-      toast.error("Verification failed. Please check the code and try again.");
-    }
+    },
+    onError: (error) => {
+      const normalized = normalizeError(error);
+      toast.error(normalized.message);
+    },
+  });
+
+  const { mutate: mutateResend } = useMutation({
+    mutationFn: resendCode,
+    onSuccess: () => {
+      toast.success(
+        "Verification code resent successfully! Please check your email."
+      );
+    },
+    onError: (error) => {
+      const normalized = normalizeError(error);
+      toast.error(normalized.message);
+    },
+  });
+
+  const onSubmit = () => {
+    mutate(Number(codeVerification));
+  };
+
+  const onSubmitResend = () => {
+    mutateResend();
   };
 
   return (
@@ -43,45 +70,66 @@ export const VerifyAccount = () => {
         <img src={DavidaLogo} alt="Description" className="w-40 p-4" />
         <Card className="w-full rounded-lg backdrop-blur">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl">Verify Account</CardTitle>
+            <CardTitle className="text-2xl">
+              {t("verify-account.title")}
+            </CardTitle>
             <CardDescription className="text-muted-foreground">
-              Enter the verification code sent to your email
+              {t("verify-account.subtitle")}
             </CardDescription>
           </CardHeader>
-          <CardContent className="flex flex-col items-center space-y-8">
-            <div>
-              <InputOTP
-                maxLength={6}
-                value={codeVerification}
-                onChange={(val) => {
-                  if (/^\d*$/.test(val)) setCodeVerification(val);
-                }}
-              >
-                <InputOTPGroup>
-                  <InputOTPSlot index={0} />
-                  <InputOTPSlot index={1} />
-                  <InputOTPSlot index={2} />
-                  <InputOTPSlot index={3} />
-                  <InputOTPSlot index={4} />
-                  <InputOTPSlot index={5} />
-                </InputOTPGroup>
-              </InputOTP>
-              <div className="text-center text-sm mt-4">
-                {codeVerification === "" ? (
-                  <>Enter your one-time password.</>
-                ) : (
-                  <>You entered: {codeVerification}</>
-                )}
+          <CardContent className="flex justify-center">
+            <div className="flex flex-col items-center w-full space-y-8">
+              <div className="w-full flex flex-col items-center">
+                <InputOTP
+                  maxLength={6}
+                  value={codeVerification}
+                  onChange={(val) => {
+                    if (/^\d*$/.test(val)) setCodeVerification(val);
+                  }}
+                >
+                  <InputOTPGroup>
+                    <InputOTPSlot index={0} />
+                    <InputOTPSlot index={1} />
+                    <InputOTPSlot index={2} />
+                    <InputOTPSlot index={3} />
+                    <InputOTPSlot index={4} />
+                    <InputOTPSlot index={5} />
+                  </InputOTPGroup>
+                </InputOTP>
+                <div className="text-center text-sm mt-4">
+                  {codeVerification === "" ? (
+                    t("verify-account.indication")
+                  ) : (
+                    <span>
+                      {t("verify-account.is-entered")}{" "}
+                      <span className="font-bold">{codeVerification}</span>
+                    </span>
+                  )}
+                </div>
               </div>
+
+              <Button
+                size="sm"
+                className="w-full cursor-pointer"
+                onClick={onSubmit}
+                disabled={isPending || codeVerification.length !== 6}
+              >
+                {isPending ? (
+                  <Spinner size="md" className="bg-black dark:bg-white" />
+                ) : (
+                  t("verify-account.actions.confirm")
+                )}
+              </Button>
             </div>
-            <Button
-              size="sm"
-              className="w-full cursor-pointer"
-              onClick={onSubmit}
-            >
-              Verify Account
-            </Button>
           </CardContent>
+          <CardFooter className="flex flex-col items-center">
+            <p className="text-sm">
+              {t("verify-account.actions.label")}{" "}
+              <a onClick={onSubmitResend} className="underline cursor-pointer">
+                {t("verify-account.actions.resend")}
+              </a>
+            </p>
+          </CardFooter>
         </Card>
       </div>
     </div>

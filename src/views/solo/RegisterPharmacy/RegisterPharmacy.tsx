@@ -18,7 +18,6 @@ import {
   User,
   Mail,
   Lock,
-  Phone,
   MapPin,
   Camera,
 } from "lucide-react";
@@ -39,18 +38,8 @@ import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import { useMutation } from "@tanstack/react-query";
 import { Spinner } from "@/components/ui/spinner";
-
-const formSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  description: z.string().optional(),
-  address: z.string().min(1, "Address is required"),
-  phone: z.string().min(1, "Phone is required"),
-  email: z.email("Invalid email"),
-  password: z
-    .string()
-    .min(8, "Password must be at least 8 characters")
-    .max(100, "Password must not exceed 100 characters"),
-});
+import { PhoneInput } from "@/components/shared/PhoneInput";
+import { RegisterPharmacyFormSchema } from "./RegisterPharmacyForm";
 
 export const RegisterPharmacy = () => {
   const navigate = useNavigate();
@@ -62,7 +51,7 @@ export const RegisterPharmacy = () => {
   const [coverPhotoError, setCoverPhotoError] = useState("");
 
   const form = useForm({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(RegisterPharmacyFormSchema),
     defaultValues: {
       name: "",
       description: "",
@@ -103,7 +92,7 @@ export const RegisterPharmacy = () => {
     }
   };
 
-  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+  const onSubmit = async (data: z.infer<typeof RegisterPharmacyFormSchema>) => {
     let valid = true;
 
     if (!profilePhoto) {
@@ -234,13 +223,7 @@ export const RegisterPharmacy = () => {
                       </FormLabel>
                       <FormControl>
                         <div className="relative">
-                          <Phone className="absolute left-3 top-3 h-4 w-4" />
-                          <Input
-                            {...field}
-                            type="tel"
-                            placeholder="+1 234-567-8901"
-                            className="pl-10"
-                          />
+                          <PhoneInput defaultCountry="SV" {...field} />
                         </div>
                       </FormControl>
                       <FormMessage />

@@ -76,5 +76,13 @@
   "landing.section.one.card.three.title": "Comenzar a Vender",
   "landing.section.one.card.three.description": "Comienza a recibir pedidos y gestiona tu farmacia desde el panel de control.",
 
-  "layout.common.navbar.logout": "Cerrar sesión"
+  "layout.common.navbar.logout": "Cerrar sesión",
+
+  "verify-account.title": "Verificar Cuenta",
+  "verify-account.subtitle": "Ingresa el código de verificación enviado a tu correo electrónico",
+  "verify-account.indication": "Ingresa tu código de verificación de un solo uso",
+  "verify-account.is-entered": "Has ingresado",
+  "verify-account.actions.confirm": "Verificar",
+  "verify-account.actions.label": "¿No recibiste el código o ya expiró?",
+  "verify-account.actions.resend": "Reenviar código"
 }

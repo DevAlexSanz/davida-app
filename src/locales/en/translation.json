@@ -76,5 +76,13 @@
   "landing.section.one.card.three.title": "Start Selling",
   "landing.section.one.card.three.description": "Start receiving orders and manage your pharmacy from the control panel.",
 
-  "layout.common.navbar.logout": "Logout"
+  "layout.common.navbar.logout": "Logout",
+
+  "verify-account.title": "Verify Account",
+  "verify-account.subtitle": "Enter the verification code sent to your email",
+  "verify-account.indication": "Enter your one-time password.",
+  "verify-account.is-entered": "You entered:",
+  "verify-account.actions.confirm": "Verify",
+  "verify-account.actions.label": "Didn't receive the code or it expired?",
+  "verify-account.actions.resend": "Resend Code"
 }
