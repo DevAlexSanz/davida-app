@@ -33,7 +33,7 @@
   "register.button.have-account": "Iniciar sesión",
   "register.user.title": "Crear una cuenta",
   "register.user.subtitle": "Ingresa tu correo electrónico a continuación para crear tu cuenta",
-  "register.user.button": "Iniciar sesión con Email",
+  "register.user.button": "Crear",
 
   "register.pharmacy.card.pharmacy-information.title": "Información de la Farmacia",
   "register.pharmacy.card.pharmacy-information.subtitle": "Proporciona los detalles básicos de tu farmacia",

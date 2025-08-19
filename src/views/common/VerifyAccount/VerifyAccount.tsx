@@ -19,7 +19,7 @@ import { useState } from "react";
 import { resendCode, verifyAccount } from "@/api/services/auth.service";
 import { useAuthStore } from "@/store/auth";
 import { useMutation } from "@tanstack/react-query";
-import { Spinner } from "@/components/ui/spinner";
+import { Spinner } from "@/components/ui/shadcn-io/spinner";
 import { useTranslation } from "react-i18next";
 import { normalizeError } from "@/lib/utils/normalizeErrors";
 
@@ -114,11 +114,7 @@ export const VerifyAccount = () => {
                 onClick={onSubmit}
                 disabled={isPending || codeVerification.length !== 6}
               >
-                {isPending ? (
-                  <Spinner size="md" className="bg-black dark:bg-white" />
-                ) : (
-                  t("verify-account.actions.confirm")
-                )}
+                {isPending ? <Spinner /> : t("verify-account.actions.confirm")}
               </Button>
             </div>
           </CardContent>

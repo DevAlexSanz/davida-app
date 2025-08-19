@@ -37,7 +37,7 @@ import { registerPharmacy } from "@/api/services/auth.service";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import { useMutation } from "@tanstack/react-query";
-import { Spinner } from "@/components/ui/spinner";
+import { Spinner } from "@/components/ui/shadcn-io/spinner";
 import { PhoneInput } from "@/components/shared/PhoneInput";
 import { RegisterPharmacyFormSchema } from "./RegisterPharmacyForm";
 
@@ -412,7 +412,7 @@ export const RegisterPharmacy = () => {
             </Button>
             <Button type="submit" className="flex-1" disabled={isPending}>
               {isPending ? (
-                <Spinner size="md" className="bg-black dark:bg-white" />
+                <Spinner />
               ) : (
                 t("register.pharmacy.actions.register")
               )}

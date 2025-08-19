@@ -11,11 +11,10 @@ export const useAuthGuard = () => {
 
   useEffect(() => {
     const validateUser = async () => {
-      setLoading(true);
-
       if (!isAuthenticated) {
         logout();
         navigate("/login");
+        setLoading(false);
         return;
       }
 
@@ -24,6 +23,7 @@ export const useAuthGuard = () => {
 
         if (!userData.isVerified) {
           navigate("/verify-account");
+          setLoading(false);
           return;
         }
 

@@ -33,7 +33,7 @@
   "register.button.have-account": "Sign In",
   "register.user.title": "Create an Account",
   "register.user.subtitle": "Enter your email below to create your account",
-  "register.user.button": "Sign In with Email",
+  "register.user.button": "Create",
 
   "register.pharmacy.card.pharmacy-information.title": "Pharmacy Information",
   "register.pharmacy.card.pharmacy-information.subtitle": "Provide the basic details of your pharmacy",

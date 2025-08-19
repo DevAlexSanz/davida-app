@@ -26,7 +26,7 @@ import { useAuthStore } from "@/store/auth";
 import { Separator } from "@/components/ui/separator";
 import { useTranslation } from "react-i18next";
 import { useMutation } from "@tanstack/react-query";
-import { Spinner } from "@/components/ui/spinner";
+import { Spinner } from "@/components/ui/shadcn-io/spinner";
 
 const formSchema = z.object({
   email: z.email("Invalid email address"),
@@ -125,11 +125,7 @@ export const Login = () => {
               className="w-full cursor-pointer"
               disabled={isPending}
             >
-              {isPending ? (
-                <Spinner size="md" className="bg-black dark:bg-white" />
-              ) : (
-                t("login.button")
-              )}
+              {isPending ? <Spinner /> : t("login.button")}
             </Button>
           </form>
         </Form>

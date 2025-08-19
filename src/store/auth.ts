@@ -7,7 +7,7 @@ export const useAuthStore = create<AuthContextType>()(
   persist(
     (set) => ({
       user: null,
-      isLoading: false,
+      isLoading: true,
       isAuthenticated: false,
       setUser: (user) => set({ user, isLoading: false }),
       setLoading: (isLoading) => set({ isLoading }),
@@ -15,7 +15,6 @@ export const useAuthStore = create<AuthContextType>()(
       logout: async () => {
         try {
           await logout();
-
           set({
             user: null,
             isLoading: false,
@@ -30,6 +29,10 @@ export const useAuthStore = create<AuthContextType>()(
     {
       name: "auth-storage",
       storage: createJSONStorage(() => localStorage),
+      partialize: (state) => ({
+        user: state.user,
+        isAuthenticated: state.isAuthenticated,
+      }),
     }
   )
 );

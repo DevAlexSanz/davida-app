@@ -25,7 +25,7 @@ import { useNavigate } from "react-router";
 import { Separator } from "@/components/ui/separator";
 import { useTranslation } from "react-i18next";
 import { useMutation } from "@tanstack/react-query";
-import { Spinner } from "@/components/ui/spinner";
+import { Spinner } from "@/components/ui/shadcn-io/spinner";
 
 const formSchema = z.object({
   email: z.email("Invalid email address"),
@@ -113,11 +113,7 @@ export const RegisterUser = () => {
               className="w-full cursor-pointer"
               disabled={isPending}
             >
-              {isPending ? (
-                <Spinner size="md" className="bg-black dark:bg-white" />
-              ) : (
-                t("register.user.button")
-              )}
+              {isPending ? <Spinner /> : t("register.user.button")}
             </Button>
           </form>
         </Form>
