@@ -11,7 +11,7 @@ export const createAxiosInstance = (config: AxiosRequestConfig) => {
 
       const isSessionExpired =
         error.response?.status === 401 &&
-        error.response?.data?.message === "Authentication required";
+        error.response?.data?.message === "Session expired";
 
       if (isSessionExpired && !originalRequest._retry) {
         originalRequest._retry = true;
