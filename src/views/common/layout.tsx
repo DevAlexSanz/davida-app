@@ -1,19 +1,54 @@
-import { Outlet } from "react-router";
-import { CenterSpinner } from "@/components/shared/CenterSpinner";
-import { useAuthGuard } from "@/guards/useAuthGuard";
+import { Outlet, useNavigate } from "react-router";
 import DaVidaLogo from "@/assets/DaVidaLogo.png";
 import { useAuthStore } from "@/store/auth";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/shared/ThemeToggle";
 import { LangToggle } from "@/components/shared/LangToggle";
 import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
+import { CenterSpinner } from "@/components/shared/CenterSpinner";
+import { getMe } from "@/api/services/auth.service";
 
 export const CommonLayout = () => {
-  const { isLoading } = useAuthGuard();
-  const { logout } = useAuthStore();
+  const navigate = useNavigate();
   const { t } = useTranslation();
+  const { isAuthenticated, setUser, logout } = useAuthStore();
 
-  if (isLoading) return <CenterSpinner />;
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const validateUser = async () => {
+      if (!isAuthenticated) {
+        logout();
+        navigate("/login");
+        return;
+      }
+
+      try {
+        const userData = await getMe();
+
+        if (!userData.isVerified) {
+          navigate("/verify-account");
+          setLoading(false);
+          return;
+        }
+
+        setUser(userData);
+
+        setLoading(false);
+      } catch (err) {
+        console.error("Error getting user data:", err);
+        logout();
+        navigate("/login");
+      }
+    };
+
+    validateUser();
+  }, [isAuthenticated, logout, navigate, setUser]);
+
+  if (loading) {
+    return <CenterSpinner />;
+  }
 
   return (
     <>

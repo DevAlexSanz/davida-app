@@ -7,17 +7,14 @@ export const useAuthStore = create<AuthContextType>()(
   persist(
     (set) => ({
       user: null,
-      isLoading: true,
       isAuthenticated: false,
-      setUser: (user) => set({ user, isLoading: false }),
-      setLoading: (isLoading) => set({ isLoading }),
+      setUser: (user) => set({ user }),
       setIsAuthenticated: (isAuthenticated) => set({ isAuthenticated }),
       logout: async () => {
         try {
           await logout();
           set({
             user: null,
-            isLoading: false,
             isAuthenticated: false,
           });
         } catch (error) {
@@ -29,10 +26,6 @@ export const useAuthStore = create<AuthContextType>()(
     {
       name: "auth-storage",
       storage: createJSONStorage(() => localStorage),
-      partialize: (state) => ({
-        user: state.user,
-        isAuthenticated: state.isAuthenticated,
-      }),
     }
   )
 );
