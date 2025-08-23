@@ -22,18 +22,25 @@ import { useMutation } from "@tanstack/react-query";
 import { Spinner } from "@/components/ui/shadcn-io/spinner";
 import { useTranslation } from "react-i18next";
 import { normalizeError } from "@/lib/utils/normalizeErrors";
+import { useNavigate } from "react-router";
 
 export const VerifyAccount = () => {
   const { logout } = useAuthStore();
+  const navigate = useNavigate();
   const { t } = useTranslation();
 
   const [codeVerification, setCodeVerification] = useState<string>("");
+
+  const handleLogout = async () => {
+    await logout();
+    navigate("/login");
+  };
 
   const { mutate, isPending } = useMutation({
     mutationFn: verifyAccount,
     onSuccess: () => {
       toast.success("Account verified successfully! You can now log in.");
-      logout();
+      handleLogout();
     },
     onError: (error) => {
       const normalized = normalizeError(error);

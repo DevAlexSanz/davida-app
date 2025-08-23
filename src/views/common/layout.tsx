@@ -12,18 +12,12 @@ import { getMe } from "@/api/services/auth.service";
 export const CommonLayout = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { isAuthenticated, setUser, logout } = useAuthStore();
+  const { setUser, logout } = useAuthStore();
 
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const validateUser = async () => {
-      if (!isAuthenticated) {
-        logout();
-        navigate("/login");
-        return;
-      }
-
       try {
         const userData = await getMe();
 
@@ -44,11 +38,16 @@ export const CommonLayout = () => {
     };
 
     validateUser();
-  }, [isAuthenticated, logout, navigate, setUser]);
+  }, [logout, navigate, setUser]);
 
   if (loading) {
     return <CenterSpinner />;
   }
+
+  const handleLogout = async () => {
+    await logout();
+    navigate("/login");
+  };
 
   return (
     <>
@@ -56,7 +55,7 @@ export const CommonLayout = () => {
         <div className="mx-auto flex max-w-screen-xl items-center justify-between">
           <img src={DaVidaLogo} alt="DaVida Logo" className="w-24 h-auto" />
           <div className="flex items-center gap-3">
-            <Button onClick={logout} className="w-[120px]">
+            <Button onClick={handleLogout} className="w-[120px]">
               {t("layout.common.navbar.logout")}
             </Button>
             <LangToggle />

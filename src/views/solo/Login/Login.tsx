@@ -22,7 +22,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { login } from "@/api/services/auth.service";
-import { useAuthStore } from "@/store/auth";
 import { Separator } from "@/components/ui/separator";
 import { useTranslation } from "react-i18next";
 import { useMutation } from "@tanstack/react-query";
@@ -39,7 +38,6 @@ const formSchema = z.object({
 export const Login = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { setIsAuthenticated } = useAuthStore();
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -52,7 +50,6 @@ export const Login = () => {
   const { mutate, isPending } = useMutation({
     mutationFn: login,
     onSuccess: () => {
-      setIsAuthenticated(true);
       toast.success("Login successful!");
       navigate("/dashboard");
     },
@@ -65,6 +62,10 @@ export const Login = () => {
     mutate(data);
   };
 
+  const handleLogin = () => {
+    window.location.href = "http://localhost:8080/api/auth/google";
+  };
+
   return (
     <Card className="w-full max-w-sm rounded-lg backdrop-blur">
       <CardHeader className="text-center">
@@ -75,7 +76,11 @@ export const Login = () => {
       </CardHeader>
 
       <CardContent>
-        <Button size="sm" className="w-full bg-secondary cursor-pointer">
+        <Button
+          size="sm"
+          className="w-full bg-secondary cursor-pointer"
+          onClick={handleLogin}
+        >
           Login with Google
         </Button>
 

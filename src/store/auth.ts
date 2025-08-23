@@ -7,15 +7,12 @@ export const useAuthStore = create<AuthContextType>()(
   persist(
     (set) => ({
       user: null,
-      isAuthenticated: false,
       setUser: (user) => set({ user }),
-      setIsAuthenticated: (isAuthenticated) => set({ isAuthenticated }),
       logout: async () => {
         try {
           await logout();
           set({
             user: null,
-            isAuthenticated: false,
           });
         } catch (error) {
           console.error("Error logging out:", error);
