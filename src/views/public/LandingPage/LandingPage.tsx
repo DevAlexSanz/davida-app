@@ -10,7 +10,7 @@ import {
   Users,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 export const LandingPage = () => {
   const navigate = useNavigate();
@@ -187,6 +187,26 @@ export const LandingPage = () => {
           </Card>
         </div>
       </section>
+
+      <footer className="w-full py-4 px-4 sm:px-6 md:px-8 text-sm text-muted-foreground">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+          <div className="flex items-center gap-4">
+            <Link
+              to="/privacy-policy"
+              className="hover:underline transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <a
+              href="mailto:alexander@minimalbyte.dev"
+              className="hover:underline transition-colors"
+            >
+              alexander@minimalbyte.dev
+            </a>
+          </div>
+          <div className="text-xs sm:text-sm">Made in El Salvador 🇸🇻</div>
+        </div>
+      </footer>
     </>
   );
 };
