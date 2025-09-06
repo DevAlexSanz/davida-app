@@ -8,13 +8,8 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { CenterSpinner } from "@/components/shared/CenterSpinner";
 import { getMe } from "@/api/services/auth.service";
-import clsx from "clsx";
 
-interface CommonLayoutProps {
-  fullWidth?: boolean;
-}
-
-export const CommonLayout = ({ fullWidth = false }: CommonLayoutProps) => {
+export const CommonLayout = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { setUser, logout } = useAuthStore();
@@ -73,12 +68,7 @@ export const CommonLayout = ({ fullWidth = false }: CommonLayoutProps) => {
       </header>
 
       <main className="pt-28 px-6 pb-12 flex flex-col min-h-screen">
-        <div
-          className={clsx(
-            "mx-auto w-full flex-grow",
-            fullWidth ? "max-w-full" : "max-w-screen-lg"
-          )}
-        >
+        <div className="mx-auto w-full flex-grow max-w-full">
           <Outlet />
         </div>
       </main>
