@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import DavidaLogo from "@/assets/DaVidaLogo.png";
+import DavidaLogo from "/DaVidaLogo.png";
 
 import toast from "react-hot-toast";
 import {
@@ -71,8 +71,8 @@ export const VerifyAccount = () => {
 
   return (
     <div className="flex-grow flex items-center justify-center relative px-4">
-      <div className="absolute w-[50vw] h-[40vh] bg-[#0099ff] rounded-full blur-3xl opacity-40 z-0 top-1/2 left-1/2 -translate-x-[70%] -translate-y-1/2" />
-      <div className="absolute w-[50vw] h-[40vh] bg-[#3DDC97] rounded-full blur-3xl opacity-40 z-0 top-1/2 left-1/2 -translate-x-[30%] -translate-y-1/2" />
+      <div className="absolute w-[50vw] h-[40vh] bg-[#00a1ca] rounded-full blur-3xl opacity-40 z-0 top-1/2 left-1/2 -translate-x-[70%] -translate-y-1/2" />
+      <div className="absolute w-[50vw] h-[40vh] bg-[#33c364] rounded-full blur-3xl opacity-40 z-0 top-1/2 left-1/2 -translate-x-[30%] -translate-y-1/2" />
       <div className="relative z-10 flex flex-col items-center justify-center text-center w-full max-w-md">
         <img src={DavidaLogo} alt="Description" className="w-40 p-4" />
         <Card className="w-full rounded-lg backdrop-blur">

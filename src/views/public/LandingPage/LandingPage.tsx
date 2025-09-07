@@ -18,51 +18,55 @@ export const LandingPage = () => {
 
   const elements = [
     {
-      logo: <Store size={48} color="white" />,
-      color: "primary",
-      bgClass: "bg-primary",
-      bgLightClass: "bg-primary/20",
-      borderClass: "border-primary/50",
+      logo: <Store size={32} />,
       title: "landing.elements.management.title",
       description: "landing.elements.management.description",
     },
     {
-      logo: <Package size={48} color="white" />,
-      color: "secondary",
-      bgClass: "bg-secondary",
-      bgLightClass: "bg-secondary/20",
-      borderClass: "border-secondary/50",
+      logo: <Package size={32} />,
       title: "landing.elements.inventory.title",
       description: "landing.elements.inventory.description",
     },
     {
-      logo: <Users size={48} color="white" />,
-      color: "accent",
-      bgClass: "bg-accent",
-      bgLightClass: "bg-accent/20",
-      borderClass: "border-accent/50",
+      logo: <Users size={32} />,
       title: "landing.elements.customers.title",
       description: "landing.elements.customers.description",
     },
     {
-      logo: <ShoppingCart size={48} color="white" />,
-      color: "amber-600",
-      bgClass: "bg-amber-600",
-      bgLightClass: "bg-amber-600/20",
-      borderClass: "border-amber-600/50",
+      logo: <ShoppingCart size={32} />,
       title: "landing.elements.sales.title",
       description: "landing.elements.sales.description",
     },
   ];
 
+  const features = [
+    {
+      icon: <Store size={28} />,
+      title: "landing.section.one.card.one.title",
+      description: "landing.section.one.card.one.description",
+    },
+    {
+      icon: <Package size={28} />,
+      title: "landing.section.one.card.two.title",
+      description: "landing.section.one.card.two.description",
+    },
+    {
+      icon: <ShoppingCart size={28} />,
+      title: "landing.section.one.card.three.title",
+      description: "landing.section.one.card.three.description",
+    },
+  ];
+
   return (
     <>
-      <section className="flex flex-col items-center justify-center text-center w-full max-w-7xl mx-auto gap-20 py-8 px-4 sm:px-6 md:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
+      {/* Hero Section */}
+      <section className="w-full max-w-7xl mx-auto py-12 px-4 sm:px-6 md:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Texto */}
           <div className="flex flex-col items-start text-left max-w-lg">
             <Badge
               variant="outline"
-              className="bg-accent/10 border-secondary/20 text-secondary text-md h-10 rounded-3xl px-4 mb-6"
+              className="bg-secondary/10 border-secondary/20 text-secondary text-md h-10 rounded-3xl px-4 mb-6"
             >
               {t("landing.badge")}
             </Badge>
@@ -75,7 +79,7 @@ export const LandingPage = () => {
 
             <div className="mt-8 flex flex-col sm:flex-row flex-wrap gap-4 w-full">
               <Button
-                className="w-full sm:flex-1 py-6 text-lg font-semibold cursor-pointer"
+                className="w-full sm:flex-1 py-6 text-lg font-semibold"
                 onClick={() => navigate("/register/pharmacy")}
               >
                 <Store className="mr-2" />
@@ -84,7 +88,8 @@ export const LandingPage = () => {
               </Button>
 
               <Button
-                className="w-full sm:flex-1 py-6 text-lg font-semibold bg-secondary cursor-pointer"
+                variant="secondary"
+                className="w-full sm:flex-1 py-6 text-lg font-semibold"
                 onClick={() => navigate("/register/user")}
               >
                 <User className="mr-2" />
@@ -94,102 +99,68 @@ export const LandingPage = () => {
             </div>
           </div>
 
+          {/* Grid de elementos */}
           <div className="flex justify-center w-full">
-            <Card className="rounded-xl w-full max-w-full">
-              <CardContent>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
-                  {elements.map((element, index) => (
-                    <Card
-                      key={index}
-                      className={`flex flex-col items-center rounded-lg ${element.bgLightClass} ${element.borderClass} border w-full`}
-                    >
-                      <CardContent className="flex flex-col items-center justify-between h-full w-full">
-                        <div
-                          className={`rounded-lg w-16 h-16 flex items-center justify-center ${element.bgClass}`}
-                        >
-                          {element.logo}
-                        </div>
-                        <div className="text-center">
-                          <h2 className="text-lg font-semibold">
-                            {t(element.title)}
-                          </h2>
-                          <p className="text-sm text-muted-foreground">
-                            {t(element.description)}
-                          </p>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
+              {elements.map((element, index) => (
+                <Card
+                  key={index}
+                  className="flex flex-col items-center border rounded-xl shadow-sm hover:shadow-md transition-all"
+                >
+                  <CardContent className="flex flex-col items-center justify-between h-full p-6">
+                    <div className="rounded-full bg-secondary/10 text-secondary w-14 h-14 flex items-center justify-center mb-4">
+                      {element.logo}
+                    </div>
+                    <h2 className="text-lg font-semibold text-center mb-2">
+                      {t(element.title)}
+                    </h2>
+                    <p className="text-sm text-muted-foreground text-center">
+                      {t(element.description)}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="flex flex-col items-center justify-center text-center w-full max-w-7xl mx-auto gap-20 py-8 px-4 sm:px-6 md:px-8">
-        <div className="flex flex-col items-center text-center w-full max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
+      {/* Features Section */}
+      <section className="w-full max-w-7xl mx-auto py-12 px-4 sm:px-6 md:px-8">
+        <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-12">
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
             {t("landing.section.one.title")}
-          </h1>
+          </h2>
           <p className="text-lg md:text-xl text-muted-foreground">
             {t("landing.section.one.description")}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 w-full">
-          <Card className="flex flex-col items-center rounded-lg bg-transparent shadow-none border border-border">
-            <CardContent className="flex flex-col items-center justify-between h-full w-full">
-              <div className="rounded-lg w-16 h-16 flex items-center justify-center bg-primary">
-                <Store size={32} color="white" />
-              </div>
-              <div className="text-center mt-4">
-                <h2 className="text-lg font-semibold">
-                  {t("landing.section.one.card.one.title")}
-                </h2>
-                <p className="text-sm text-muted-foreground">
-                  {t("landing.section.one.card.one.description")}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {features.map((feature, idx) => (
+            <Card
+              key={idx}
+              className="flex flex-col items-center border rounded-xl shadow-sm hover:shadow-md transition-all"
+            >
+              <CardContent className="flex flex-col items-center p-6">
+                <div className="rounded-full bg-primary/10 text-primary w-14 h-14 flex items-center justify-center mb-4">
+                  {feature.icon}
+                </div>
+                <h3 className="text-lg font-semibold text-center mb-2">
+                  {t(feature.title)}
+                </h3>
+                <p className="text-sm text-muted-foreground text-center">
+                  {t(feature.description)}
                 </p>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="flex flex-col items-center rounded-lg bg-transparent shadow-none border border-border">
-            <CardContent className="flex flex-col items-center justify-between h-full w-full">
-              <div className="rounded-lg w-16 h-16 flex items-center justify-center bg-secondary">
-                <Package size={32} color="white" />
-              </div>
-              <div className="text-center mt-4">
-                <h2 className="text-lg font-semibold">
-                  {t("landing.section.one.card.two.title")}
-                </h2>
-                <p className="text-sm text-muted-foreground">
-                  {t("landing.section.one.card.two.description")}
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="flex flex-col items-center rounded-lg bg-transparent shadow-none border border-border">
-            <CardContent className="flex flex-col items-center justify-between h-full w-full">
-              <div className="rounded-lg w-16 h-16 flex items-center justify-center bg-accent">
-                <ShoppingCart size={32} color="white" />
-              </div>
-              <div className="text-center mt-4">
-                <h2 className="text-lg font-semibold">
-                  {t("landing.section.one.card.three.title")}
-                </h2>
-                <p className="text-sm text-muted-foreground">
-                  {t("landing.section.one.card.three.description")}
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </section>
 
-      <footer className="w-full py-4 px-4 sm:px-6 md:px-8 text-sm text-muted-foreground">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+      {/* Footer */}
+      <footer className="w-full max-w-7xl mx-auto py-6 px-4 sm:px-6 md:px-8 text-sm text-muted-foreground">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-2">
           <div className="flex items-center gap-4">
             <Link
               to="/privacy-policy"
