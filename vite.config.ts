@@ -35,7 +35,7 @@ export default defineConfig({
             purpose: "maskable",
           },
           {
-            src: "/vite.svg",
+            src: "/Logo.png",
             sizes: "512x512",
             type: "image/png",
             purpose: "maskable",

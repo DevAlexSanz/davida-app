@@ -77,8 +77,9 @@ export const Login = () => {
 
       <CardContent>
         <Button
+          variant="secondary"
           size="sm"
-          className="w-full bg-secondary cursor-pointer"
+          className="w-full cursor-pointer"
           onClick={handleLogin}
         >
           Login with Google

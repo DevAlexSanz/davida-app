@@ -1,4 +1,4 @@
-import DaVidaLogo from "@/assets/DaVidaLogo.png";
+import DaVidaLogo from "/DaVidaLogo.png";
 import { Outlet, useNavigate } from "react-router";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
@@ -82,8 +82,8 @@ export const PublicLayout = () => {
       </header>
 
       <div className="relative flex flex-col items-center justify-start min-h-screen overflow-hidden px-4 pt-28 pb-12 sm:pt-32 sm:pb-16 md:pt-36 md:pb-20 gap-20">
-        <div className="absolute w-[500px] h-[500px] bg-[#0099ff] rounded-full blur-3xl opacity-20 bottom-[-100px] left-[-200px] z-0" />
-        <div className="absolute w-[500px] h-[500px] bg-[#3DDC97] rounded-full blur-3xl opacity-20 top-[-100px] right-[-200px] z-0" />
+        <div className="absolute w-[500px] h-[500px] bg-[#00a1ca] rounded-full blur-3xl opacity-20 bottom-[-100px] left-[-200px] z-0" />
+        <div className="absolute w-[500px] h-[500px] bg-[#33c364] rounded-full blur-3xl opacity-20 top-[-100px] right-[-200px] z-0" />
 
         <Outlet />
       </div>

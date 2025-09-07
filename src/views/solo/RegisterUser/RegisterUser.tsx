@@ -126,7 +126,7 @@ export const RegisterUser = () => {
           <Separator className="flex-1" />
         </div>
 
-        <Button size="sm" className="w-full bg-secondary cursor-pointer">
+        <Button variant="secondary" size="sm" className="w-full cursor-pointer">
           Sign Up with Google
         </Button>
       </CardContent>

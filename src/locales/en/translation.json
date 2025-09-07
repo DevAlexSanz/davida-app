@@ -84,5 +84,9 @@
   "verify-account.is-entered": "You entered:",
   "verify-account.actions.confirm": "Verify",
   "verify-account.actions.label": "Didn't receive the code or it expired?",
-  "verify-account.actions.resend": "Resend Code"
+  "verify-account.actions.resend": "Resend Code",
+
+  "dropdown.logout": "Logout",
+  "dropdown.theme": "Theme",
+  "dropdown.language": "Language"
 }

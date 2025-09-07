@@ -19,7 +19,7 @@ export const LangToggle = () => {
     >
       <Globe className="h-[1.2rem] w-[1.2rem]" />
       <span className="sr-only">Toggle language</span>
-      <span className="absolute text-[0.6rem] bottom-0 right-0 bg-black text-white px-1 rounded">
+      <span className="absolute text-[0.6rem] bottom-0 right-0  px-1 rounded">
         {i18n.language.toUpperCase()}
       </span>
     </Button>
