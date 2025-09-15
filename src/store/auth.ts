@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import type { AuthContextType } from "@/types/AuthContextType";
-import { logout } from "@/api/services/auth.service";
+import { logout } from "@/utils/api/services/auth.service";
 
 export const useAuthStore = create<AuthContextType>()(
   persist(

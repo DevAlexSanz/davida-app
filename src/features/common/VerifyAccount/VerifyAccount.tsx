@@ -16,12 +16,12 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { useState } from "react";
-import { resendCode, verifyAccount } from "@/api/services/auth.service";
+import { resendCode, verifyAccount } from "@/utils/api/services/auth.service";
 import { useAuthStore } from "@/store/auth";
 import { useMutation } from "@tanstack/react-query";
 import { Spinner } from "@/components/ui/shadcn-io/spinner";
 import { useTranslation } from "react-i18next";
-import { normalizeError } from "@/lib/utils/normalizeErrors";
+import { normalizeError } from "@/utils/normalizeErrors";
 import { useNavigate } from "react-router";
 
 export const VerifyAccount = () => {

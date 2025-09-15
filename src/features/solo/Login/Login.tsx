@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { login } from "@/api/services/auth.service";
+import { login } from "@/utils/api/services/auth.service";
 import { Separator } from "@/components/ui/separator";
 import { useTranslation } from "react-i18next";
 import { useMutation } from "@tanstack/react-query";

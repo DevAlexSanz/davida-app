@@ -1,15 +1,15 @@
-import { CommonLayout } from "@/views/common/layout";
-import { LandingPage } from "@/views/public/LandingPage/LandingPage";
-import { VerifyAccount } from "@/views/common/VerifyAccount/VerifyAccount";
-import { SoloLayout } from "@/views/solo/layout";
-import { Login } from "@/views/solo/Login/Login";
-import { RegisterPharmacy } from "@/views/solo/RegisterPharmacy/RegisterPharmacy";
-import { RegisterUser } from "@/views/solo/RegisterUser/RegisterUser";
+import { CommonLayout } from "@/features/common/layout";
+import { LandingPage } from "@/features/public/LandingPage/LandingPage";
+import { VerifyAccount } from "@/features/common/VerifyAccount/VerifyAccount";
+import { SoloLayout } from "@/features/solo/layout";
+import { Login } from "@/features/solo/Login/Login";
+import { RegisterPharmacy } from "@/features/solo/RegisterPharmacy/RegisterPharmacy";
+import { RegisterUser } from "@/features/solo/RegisterUser/RegisterUser";
 import { Route, Routes } from "react-router";
-import { PublicLayout } from "@/views/public/layout";
-import { Register } from "@/views/solo/Register/Register";
-import { Dashboard } from "@/views/common/Dashboard/Dashboard";
-import { PrivacyPolicy } from "@/views/public/PrivacyPolicy";
+import { PublicLayout } from "@/features/public/layout";
+import { Register } from "@/features/solo/Register/Register";
+import { Dashboard } from "@/features/common/Dashboard/Dashboard";
+import { PrivacyPolicy } from "@/features/public/PrivacyPolicy";
 
 export const AppRouter = () => {
   return (

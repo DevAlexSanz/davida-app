@@ -18,7 +18,7 @@ import { LangToggle } from "@/components/shared/LangToggle";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { CenterSpinner } from "@/components/shared/CenterSpinner";
-import { getMe } from "@/api/services/auth.service";
+import { getMe } from "@/utils/api/services/auth.service";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -29,7 +29,7 @@ import {
 export const CommonLayout = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { setUser, logout } = useAuthStore();
+  const { setUser, user, logout } = useAuthStore();
 
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -78,15 +78,15 @@ export const CommonLayout = () => {
         variant="ghost"
         className="w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
       >
-        <Users className="h-4 w-4 mr-3" />
-        Usuarios
+        <Package className="h-4 w-4 mr-3" />
+        Productos
       </Button>
       <Button
         variant="ghost"
         className="w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
       >
-        <Package className="h-4 w-4 mr-3" />
-        Productos
+        <Users className="h-4 w-4 mr-3" />
+        Usuarios
       </Button>
       <Button
         variant="ghost"
@@ -127,14 +127,16 @@ export const CommonLayout = () => {
           </div>
 
           <div className="ml-auto flex items-center space-x-2 md:space-x-4">
-            <Button
-              variant="outline"
-              size="sm"
-              className="hidden sm:flex bg-transparent"
-            >
-              <Plus className="h-4 w-4 mr-2" />
-              Nuevo
-            </Button>
+            {user?.role === "ADMIN" && (
+              <Button
+                variant="outline"
+                size="sm"
+                className="hidden sm:flex bg-transparent"
+              >
+                <Plus className="h-4 w-4 mr-2" />
+                Nuevo
+              </Button>
+            )}
             <Button
               variant="outline"
               size="sm"

@@ -33,7 +33,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { registerPharmacy } from "@/api/services/auth.service";
+import { registerPharmacy } from "@/utils/api/services/auth.service";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import { useMutation } from "@tanstack/react-query";
