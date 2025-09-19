@@ -6,4 +6,10 @@ declare global {
     success: boolean;
     data: E;
   }
+  interface SqlResponseArray<E> {
+    statusCode: number;
+    message: string;
+    success: boolean;
+    data: E[];
+  }
 }

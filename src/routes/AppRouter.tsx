@@ -1,15 +1,16 @@
-import { CommonLayout } from "@/features/common/layout";
+import { CommonLayout } from "@/components/layouts/CommonLayout/CommonLayout";
 import { LandingPage } from "@/features/public/LandingPage/LandingPage";
 import { VerifyAccount } from "@/features/common/VerifyAccount/VerifyAccount";
-import { SoloLayout } from "@/features/solo/layout";
+import { SoloLayout } from "@/components/layouts/SoloLayout/SoloLayout";
 import { Login } from "@/features/solo/Login/Login";
 import { RegisterPharmacy } from "@/features/solo/RegisterPharmacy/RegisterPharmacy";
 import { RegisterUser } from "@/features/solo/RegisterUser/RegisterUser";
 import { Route, Routes } from "react-router";
-import { PublicLayout } from "@/features/public/layout";
+import { PublicLayout } from "@/components/layouts/PublicLayout/PublicLayout";
 import { Register } from "@/features/solo/Register/Register";
 import { Dashboard } from "@/features/common/Dashboard/Dashboard";
 import { PrivacyPolicy } from "@/features/public/PrivacyPolicy";
+import { Products } from "@/features/common/Products/Products";
 
 export const AppRouter = () => {
   return (
@@ -32,7 +33,9 @@ export const AppRouter = () => {
       <Route element={<CommonLayout />}>
         <Route path="verify-account" element={<VerifyAccount />} />
         <Route path="dashboard" element={<Dashboard />} />
-        <Route path="profile" element={<h1>Profile</h1>} />
+        <Route path="products" element={<Products />} />
+        <Route path="users" element={<h1>Users</h1>} />
+        <Route path="employees" element={<h1>Employees</h1>} />
       </Route>
 
       <Route path="*" element={<h1>404 Not Found</h1>} />
