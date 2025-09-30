@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router";
 import { Button } from "@/components/ui/button";
-import { Users, Package, UserCheck, TrendingUp } from "lucide-react";
+import { Users, Package, UserCheck, TrendingUp, Filter } from "lucide-react";
 
 export const NavigationContent = () => {
   const location = useLocation();
@@ -8,6 +8,7 @@ export const NavigationContent = () => {
   const navItems = [
     { to: "/dashboard", label: "Dashboard", icon: TrendingUp },
     { to: "/products", label: "Productos", icon: Package },
+    { to: "/categories", label: "Categorías", icon: Filter },
     { to: "/users", label: "Usuarios", icon: Users },
     { to: "/employees", label: "Empleados", icon: UserCheck },
   ];

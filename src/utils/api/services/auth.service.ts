@@ -56,7 +56,7 @@ export const login = async ({
 export const getMe = async () => {
   try {
     const { data } = await axiosInstance.get<SqlResponse<AuthUser>>("/auth/me");
-    return data.data;
+    return data.record;
   } catch (error) {
     console.error("Error fetching user data:", error);
     throw error;

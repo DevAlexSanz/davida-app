@@ -10,7 +10,8 @@ import { PublicLayout } from "@/components/layouts/PublicLayout/PublicLayout";
 import { Register } from "@/features/solo/Register/Register";
 import { Dashboard } from "@/features/common/Dashboard/Dashboard";
 import { PrivacyPolicy } from "@/features/public/PrivacyPolicy";
-import { Products } from "@/features/common/Products/Products";
+import { Products } from "@/features/common/Products/views/Products";
+import { Categories } from "@/features/common/Categories/views/Categories";
 
 export const AppRouter = () => {
   return (
@@ -34,6 +35,7 @@ export const AppRouter = () => {
         <Route path="verify-account" element={<VerifyAccount />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="products" element={<Products />} />
+        <Route path="categories" element={<Categories />} />
         <Route path="users" element={<h1>Users</h1>} />
         <Route path="employees" element={<h1>Employees</h1>} />
       </Route>

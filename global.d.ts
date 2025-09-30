@@ -1,15 +1,17 @@
 export {};
+
 declare global {
-  interface SqlResponse<E> {
+  interface BaseSqlResponse {
     statusCode: number;
     message: string;
     success: boolean;
-    data: E;
   }
-  interface SqlResponseArray<E> {
-    statusCode: number;
-    message: string;
-    success: boolean;
-    data: E[];
+
+  interface SqlResponse<E> extends BaseSqlResponse {
+    record: E;
+  }
+
+  interface SqlResponseArray<E> extends BaseSqlResponse {
+    records: E[];
   }
 }
